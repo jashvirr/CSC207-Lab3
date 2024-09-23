@@ -76,9 +76,10 @@ public class Main {
         //            and print them out; one per line
         //      hint: class Collections provides a static sort method
         // TODO Task: convert the country codes to the actual country names before sorting
+        // TODOs Completed I think
+        CountryCodeConverter converter = new CountryCodeConverter();
 
         for (String countryCode : countriesCodes) {
-            CountryCodeConverter converter = new CountryCodeConverter();
             String country = converter.fromCountryCode(countryCode);
             countries.add(country);
         }
@@ -98,11 +99,23 @@ public class Main {
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForLanguage(Translator translator, String country) {
-
+        List<String> languagesCodes = translator.getCountryLanguages(country);
+        List<String> languages = new ArrayList<>();
         // TODO Task: replace the line below so that we sort the languages
         //  alphabetically and print them out; one per line
         // TODO Task: convert the language codes to the actual language names before sorting
-        System.out.println(translator.getCountryLanguages(country));
+        LanguageCodeConverter converter = new LanguageCodeConverter();
+
+        for (String languageCode : languagesCodes) {
+            String language = converter.fromLanguageCode(languageCode);
+            languages.add(language);
+        }
+
+        Collections.sort(languages);
+
+        for (String language : languages) {
+            System.out.println(language);
+        }
 
         System.out.println("select a language from above:");
 
