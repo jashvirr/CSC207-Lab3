@@ -1,7 +1,9 @@
 package org.translation;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Collections
 
 /**
  * Main class for this program.
@@ -40,8 +42,6 @@ public class Main {
         while (true) {
             String country = promptForCountry(translator);
             String quitCommand = "quit";
-            // TODO CheckStyle: The String "quit" appears 3 times in the file.
-            // TODO Checkstyle: String literal expressions should be on the left side of an equals comparison
             if (country.equals(quitCommand)) {
                 break;
             }
@@ -70,12 +70,24 @@ public class Main {
 
     // Note: CheckStyle is configured so that we don't need javadoc for private methods
     private static String promptForCountry(Translator translator) {
-        List<String> countries = translator.getCountries();
+        List<String> countriesCodes = translator.getCountries();
+        List<String> countries = new ArrayList<>();
         // TODO Task: replace the following println call, sort the countries alphabetically,
         //            and print them out; one per line
         //      hint: class Collections provides a static sort method
         // TODO Task: convert the country codes to the actual country names before sorting
-        System.out.println(countries);
+
+        for (String countryCode : countriesCodes) {
+            CountryCodeConverter converter = new CountryCodeConverter();
+            String country = converter.fromCountryCode(countryCode);
+            countries.add(country);
+        }
+
+        Collections.sort(countries);
+
+        for (String country : countries) {
+            System.out.println(country);
+        }
 
         System.out.println("select a country from above:");
 
