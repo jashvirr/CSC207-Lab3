@@ -3,7 +3,7 @@ package org.translation;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-import java.util.Collections
+import java.util.Collections;
 
 /**
  * Main class for this program.
